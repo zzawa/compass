@@ -33,7 +33,7 @@ function init() {
   var r = 300;
   var degreeInc = 0.009;
   var degree = 0;
-  for (var i=0; i<400; i++) {
+  for (var i=0; i<40000; i++) {
     var points = [];
     var rad = degree * Math.PI / 180;
     var x = r * Math.cos(rad);
