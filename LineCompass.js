@@ -18,12 +18,30 @@ function init() {
     var x = r * Math.cos(rad);
     var y = r * Math.sin(rad);
 
+    // 三角形の底辺座標
+    // 円の中心からターゲットに対して水平に±1した座標を導く
+    var leftPosX = Math.cos((degree - 90) / 180 * Math.PI);
+    var leftPosY = Math.sin((degree - 90) / 180 * Math.PI);
+    var rightPosX = Math.cos((degree + 90) / 180 * Math.PI);
+    var rightPosY = Math.sin((degree + 90) / 180 * Math.PI);
+
+    var rC = 128 + 127 * Math.cos(degree / 180 * Math.PI);
+    var gC = 128 + 127 * Math.cos((degree + 120) / 180 * Math.PI);
+    var bC = 128 + 127 * Math.cos((degree - 120) / 180 * Math.PI);
+
     ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
+    ctx.moveTo(centerX + leftPosX, centerY + leftPosY);
     ctx.lineTo(centerX + x, centerY + y);
-    ctx.strokeStyle = "rgb(0, 0, 255)";
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    ctx.lineTo(centerX + rightPosX, centerY + rightPosY);
+    ctx.closePath();
+    ctx.fillStyle = "rgb(" + rC + "," + gC + "," + bC + ")";
+    ctx.fill();
+
+    // 枠線
+    // ctx.strokeStyle = "rgb(" + rC + "," + gC + "," + bC + ")";
+    // ctx.lineWidth = 1;
+    // ctx.stroke();
+
 
     degree += degreeInc;
   }
